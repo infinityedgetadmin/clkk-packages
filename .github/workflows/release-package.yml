@@ -1,23 +1,26 @@
-name: Node.js Package
+name: Node.js Packages
 # Push to the main branch
-
 on:
   push:
     branches:
       - main
 
 jobs:
-  publish-npm:
+  publish-gpr:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: https://registry.npmjs.org/
+          registry-url: https://npm.pkg.github.com/
+          scope: "@hmshimanyula-flabs"
       - run: npm ci
       - run: npm test
-      - run: npx tsc
-      - run: npm publish --access public
+      - run: npm run build
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

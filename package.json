@@ -1,17 +1,23 @@
 {
-  "name": "clkk-shared-packges",
+  "name": "clkk-shared-packages",
   "version": "1.0.0",
   "description": "A collection of shared packages for clkk",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"No tests yet\"",
-    "publish": "sudo npx tsc && npm publish --access public"
+    "build": "tsc",
+    "prepare": "npm run build",
+    "release": "npm version patch && npm run build && npm publish"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/ClkkApp"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/infinityedgetadmin/picky-planner-packages.git"
+    "url": "git+https://github.com/ClkkApp/CLKK.git"
   },
-  "author": "infinityedge",
+  "author": "ClkkApp",
   "license": "ISC",
   "dependencies": {
     "firebase": "^10.8.0",
@@ -21,7 +27,7 @@
   },
   "devDependencies": {},
   "bugs": {
-    "url": "https://github.com/infinityedgetadmin/picky-planner-packages/issues"
+    "url": "https://github.com/ClkkApp/CLKK/issues"
   },
-  "homepage": "https://github.com/infinityedgetadmin/picky-planner-packages#readme"
+  "homepage": "https://github.com/ClkkApp/CLKK#readme"
 }
